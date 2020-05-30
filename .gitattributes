@@ -1,0 +1,6 @@
+* text=auto
+
+*.h text linguist-language=C
+*.c text linguist-language=C
+
+/Detours/* linguist-vendored

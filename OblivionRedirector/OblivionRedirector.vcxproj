@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2B6E58D8-27A1-4C7E-9115-D315C2599C9E}</ProjectGuid>
+    <RootNamespace>OblivionRedirector</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="$(SolutionDir)\Shared.props" />
+  <PropertyGroup>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Link>
+      <MergeSections />
+      <ImportLibrary>$(OutDir)$(TargetName)$(TargetExt)</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <ImportLibrary>$(OutDir)$(TargetName)$(TargetExt)</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="Files.h" />
+    <ClInclude Include="Logging.h" />
+    <ClInclude Include="OR_Base.h" />
+    <ClInclude Include="Redirections.h" />
+    <ClInclude Include="Redirector.h" />
+    <ClCompile Include="Config.c" />
+    <ClCompile Include="Files.c" />
+    <ClCompile Include="Logging.c" />
+    <ClCompile Include="Main.c" />
+    <ClCompile Include="Redirections.c" />
+    <ClCompile Include="Redirector.c" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.vcxproj">
+      <Project>{677d4d8f-8471-46cc-b214-2c6be9a1eb14}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Detours\Detours.vcxproj">
+      <Project>{a12518fb-bc92-4a1b-a986-329aa63014ed}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <OutputFiles Include="$(OutDir)**" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="OblivionRedirector.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>
